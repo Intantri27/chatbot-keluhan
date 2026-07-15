@@ -50,38 +50,30 @@ function kirimPesan(){
 
         <div class="bot-message">
 
-            <b>📂 Kategori</b>
-
+            <b>Kategori:</b>
             <p>${data.kategori}</p>
 
             <hr>
 
             <b>💡 Solusi Awal</b>
-
             <p style="white-space:pre-line">
-
                 ${data.solusi}
-
             </p>
 
             <small>
-
-            Solusi di atas merupakan rekomendasi awal dari CampusVoice AI.
+            *Solusi di atas merupakan rekomendasi awal dari CampusVoice AI.
             Jika masalah belum terselesaikan, Anda dapat mengirim laporan kepada pihak kampus.
-
             </small>
 
             <br><br>
 
             <button class="selesai-btn">
-
                 😊 Masalah Sudah Selesai
-
             </button>
 
             <button class="kirim-btn">
 
-                📨 Kirim Keluhan
+                Kirim Keluhan
 
             </button>
 
@@ -104,7 +96,6 @@ function kirimPesan(){
             <div class="bot-message">
 
             😊 Senang mendengar masalah Anda telah terselesaikan.
-
             Terima kasih telah menggunakan CampusVoice.
 
             </div>
@@ -120,7 +111,7 @@ function kirimPesan(){
 
         btnKirim.addEventListener("click",function(){
 
-            fetch("/kirim_keluhan",{
+            fetch("/simpan_keluhan",{
 
                 method:"POST",
 
@@ -145,11 +136,8 @@ function kirimPesan(){
                 chatBox.innerHTML += `
 
                 <div class="bot-message">
-
-                ✅ Keluhan berhasil dikirim.
-
+                Keluhan berhasil dikirim.
                 Anda dapat memantau prosesnya melalui menu Riwayat Keluhan.
-
                 </div>
 
                 `;

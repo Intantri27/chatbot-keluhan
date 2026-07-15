@@ -16,41 +16,62 @@
         </nav>
     </header>
     <main>
-
         <h1>Halo, {{ nama }}!</h1>
-
         <p>
-            Selamat datang di Dashboard Admin. Pilih menu yang ingin digunakan.
+            Selamat datang di Dashboard Administrator CampusVoice.
         </p>
 
-        <div class="cards">
-
+        <div class="dashboard-card">
             <div class="card">
-
-                <div class="icon">🤖</div>
-
-                <h3>Kelola Keluhan</h3>
-
-                <p>
-                    Lihat seluruh keluhan mahasiswa
-                </p>
-
-                <a href="{{ url_for('kelola_keluhan') }}">
-                    <button>Buka</button>
-                </a>
-
+                <h3>Total Keluhan</h3>
+                <h1>{{ statistik.total }}</h1>
             </div>
 
             <div class="card">
-                <div class="icon">📋</div>
-                <h3>Data Mahasiswa</h3>
-                <p>
-                    Daftar akun mahasiswa
-                </p>
-                <button>Coming Soon</button>
+                <h3>Menunggu</h3>
+                <h1>{{ statistik.menunggu }}</h1>
+            </div>
+
+            <div class="card">
+                <h3>Diproses</h3>
+                <h1>{{ statistik.diproses }}</h1>
+            </div>
+
+            <div class="card">
+                <h3>Selesai</h3>
+                <h1>{{ statistik.selesai }}</h1>
             </div>
 
         </div>
+
+        <h2>Keluhan Terbaru</h2>
+
+            <table>
+                <tr>
+                    <th>Tanggal</th>
+                    <th>NIM</th>
+                    <th>Kategori</th>
+                    <th>Status</th>
+                </tr>
+
+                {% for row in terbaru %}
+
+                <tr>
+                    <td>{{ row.tanggal }}</td>
+                    <td>{{ row.nim }}</td>
+                    <td>{{ row.kategori }}</td>
+                    <td>{{ row.status }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+            <div class="action">
+                <a href="/kelola_keluhan">
+                    <button>
+                    Kelola Seluruh Keluhan
+                    </button>
+                </a>
+            </div>
     </main>
 </body>
 </html>

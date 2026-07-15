@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, render_template, redirect, session
-from database import (login_user, simpan_keluhan, get_keluhan_mahasiswa, get_semua_keluhan, update_status)
+from database import (login_user, simpan_keluhan, get_keluhan_mahasiswa, get_semua_keluhan, update_status, get_dashboard_admin, get_keluhan_terbaru)
 
 from ai_model import prediksi_keluhan
 
@@ -43,10 +43,15 @@ def dashboard():
         return redirect("/login")
 
     if session["role"] == "admin":
+        statistik = get_dashboard_admin()
+        terbaru = get_keluhan_terbaru()
+
         return render_template(
             "dashboard_admin.html",
-            nama=session["nama"]
-        )
+            nama=session["nama"],
+            statistik=statistik,
+            terbaru=terbaru
+            )
 
     return render_template(
         "dashboard_mhs.html",
@@ -116,7 +121,7 @@ def prediksi():
 
     return jsonify({
         "kategori": kategori,
-        "respon": solusi
+        "solusi": solusi
     })
 
 @app.route("/simpan_keluhan", methods=["POST"])

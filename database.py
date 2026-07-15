@@ -67,7 +67,7 @@ def insert_default_users():
         "admin"
     ))
 
-    # Mahasiswa contoh
+    # Mahasiswa
     cursor.execute("""
 
     INSERT OR IGNORE INTO users
@@ -84,29 +84,19 @@ def insert_default_users():
         None,
         "123456",
         "mahasiswa"
-    ))
-
-    conn.commit()
-    conn.close()
-
-# Menambah mahasiswa baru
-def tambah_mahasiswa(nama, nim, password):
-
-    conn = get_connection()
-    cursor = conn.cursor()
-
-    cursor.execute("""
-
-    INSERT INTO users
-    (nama,nim,password,role)
-    VALUES
-    (?,?,?,?)
-    """,
-
+    ),
     (
-        nama,
-        nim,
-        password,
+        "Arthala Aruna",
+        "24090040",
+        None,
+        "123456",
+        "mahasiswa"
+    ),
+    (
+        "Taksa Denandra",
+        "24090098",
+        None,
+        "123456",
         "mahasiswa"
     ))
 
@@ -183,6 +173,54 @@ def get_semua_keluhan():
     conn.close()
     return data
 
+# Dashboard Admin
+def get_dashboard_admin():
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT COUNT(*) FROM keluhan")
+    total = cursor.fetchone()[0]
+
+    cursor.execute("SELECT COUNT(*) FROM keluhan WHERE status='Menunggu'")
+    menunggu = cursor.fetchone()[0]
+
+    cursor.execute("SELECT COUNT(*) FROM keluhan WHERE status='Diproses'")
+    diproses = cursor.fetchone()[0]
+
+    cursor.execute("SELECT COUNT(*) FROM keluhan WHERE status='Selesai'")
+    selesai = cursor.fetchone()[0]
+
+    conn.close()
+
+    return {
+
+        "total": total,
+        "menunggu": menunggu,
+        "diproses": diproses,
+        "selesai": selesai
+
+    }
+
+# Keluhan Terbaru
+def get_keluhan_terbaru():
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT * FROM keluhan
+        ORDER BY tanggal DESC LIMIT 5
+    """)
+
+    data = cursor.fetchall()
+
+    conn.close()
+
+    return data
+
+
+
 # Update Status Keluhan
 def update_status(id_keluhan, status):
 
@@ -190,10 +228,8 @@ def update_status(id_keluhan, status):
     cursor = conn.cursor()
 
     cursor.execute("""
-
     UPDATE keluhan SET status=? WHERE id=?
     """,
-
     (
         status,
         id_keluhan

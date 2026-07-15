@@ -16,64 +16,65 @@ stopword_remover = StopWordRemoverFactory().create_stop_word_remover()
 # Respon otomatis
 solusi_kategori = {
 
-    "Jaringan":
-"""
-Saya mendeteksi keluhan Anda berkaitan dengan jaringan internet.
+    "Jaringan": """
+Berdasarkan hasil analisis, keluhan Anda termasuk dalam kategori Jaringan.
 
-Sebelum laporan dikirim, silakan coba beberapa langkah berikut:
+Silakan mencoba beberapa langkah berikut terlebih dahulu:
 
-• Pastikan perangkat terhubung ke WiFi kampus yang benar.
-• Matikan lalu hidupkan kembali koneksi WiFi.
-• Coba berpindah ke access point lain.
+• Pastikan perangkat telah terhubung ke jaringan WiFi kampus yang benar.
+• Matikan lalu aktifkan kembali koneksi WiFi.
 • Restart perangkat apabila diperlukan.
+• Coba berpindah ke access point lain apabila tersedia.
 
-Jika masalah masih terjadi, Anda dapat mengirim laporan kepada pihak kampus.
+Apabila kendala masih terjadi, laporan Anda akan diteruskan kepada Tim Teknologi Informasi (IT) untuk dilakukan pemeriksaan lebih lanjut.
+
+Terima kasih telah menggunakan CampusVoice.
 """,
 
-    "Akademik":
-"""
-Saya mendeteksi keluhan Anda berkaitan dengan akademik.
+    "Akademik": """
+Berdasarkan hasil analisis, keluhan Anda termasuk dalam kategori Akademik.
 
-Silakan pastikan:
+Silakan memastikan beberapa hal berikut:
 
-• Jadwal input nilai telah selesai.
-• Anda sudah login ulang ke SIAKAD.
-• Hubungi dosen pengampu apabila diperlukan.
+• Jadwal perkuliahan atau jadwal input nilai telah sesuai.
+• Data pada Sistem Informasi Akademik (SIAKAD) telah diperbarui.
+• Informasi telah dikonfirmasi kepada dosen pengampu atau program studi apabila diperlukan.
 
-Jika masalah belum terselesaikan, silakan kirim laporan.
+Jika kendala belum terselesaikan, laporan Anda akan diteruskan kepada bagian akademik untuk ditindaklanjuti.
+
+Terima kasih telah menggunakan CampusVoice.
 """,
 
-    "Administrasi":
-"""
-Saya mendeteksi keluhan administrasi.
+    "Administrasi": """
+Berdasarkan hasil analisis, keluhan Anda termasuk dalam kategori Administrasi.
 
 Silakan memastikan:
 
-• Persyaratan administrasi telah lengkap.
-• Formulir sudah dikirim.
+• Persyaratan administrasi telah dipenuhi.
+• Dokumen atau formulir telah dikirim dengan benar.
 • Estimasi waktu pelayanan telah terlewati.
 
-Jika masih mengalami kendala, silakan kirim laporan.
+Apabila kendala masih terjadi, laporan akan diteruskan kepada bagian administrasi untuk diproses lebih lanjut.
+
+Terima kasih telah menggunakan CampusVoice.
 """,
 
-    "Fasilitas":
-"""
-Saya mendeteksi keluhan fasilitas.
+    "Fasilitas": """
+Berdasarkan hasil analisis, keluhan Anda termasuk dalam kategori Fasilitas.
 
-Silakan coba:
+Sistem menyarankan agar Anda memastikan fasilitas telah digunakan sesuai prosedur.
 
-• Pastikan perangkat sudah dinyalakan.
-• Periksa kabel daya.
-• Periksa kabel HDMI/VGA apabila menggunakan proyektor.
+Apabila kendala masih terjadi atau ditemukan kerusakan pada fasilitas kampus, laporan Anda akan diteruskan kepada Tim Sarana dan Prasarana agar dapat dilakukan pemeriksaan, perbaikan, maupun penggantian apabila diperlukan.
 
-Jika masih bermasalah, silakan kirim laporan.
+Terima kasih telah menggunakan CampusVoice.
 """,
 
-    "Kebersihan":
-"""
-Saya mendeteksi keluhan mengenai kebersihan.
+    "Kebersihan": """
+Berdasarkan hasil analisis, keluhan Anda termasuk dalam kategori Kebersihan.
 
-Apabila kondisi tersebut masih terjadi, laporan akan diteruskan kepada petugas kebersihan kampus.
+Laporan Anda akan diteruskan kepada petugas kebersihan kampus agar kondisi lingkungan dapat segera diperiksa dan ditangani.
+
+Terima kasih telah menggunakan CampusVoice.
 """
 }
 
