@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>CampusVoice Chatbot</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/chatbot.css') }}">
+
+</head>
+
+<body>
+
+<header>
+
+    <h2>CampusVoice</h2>
+
+    <a href="/dashboard">← Dashboard</a>
+
+</header>
+
+<div class="chat-container">
+
+    <div class="chat-header">
+
+        CampusVoice AI Assistant
+
+    </div>
+
+    <div id="chat-box" class="chat-box">
+
+        <div class="bot-message">
+            👋 Halo! Selamat datang di <b>CampusVoice AI</b>.
+            <br><br>
+            Saya siap membantu mengidentifikasi kategori keluhan Anda dan memberikan solusi awal sebelum keluhan diteruskan kepada pihak kampus.
+            <br><br>
+            Silakan tuliskan keluhan Anda pada kolom di bawah.
+        </div>
+
+    </div>
+
+    <div class="chat-input">
+
+        <input
+            type="text"
+            id="user-input"
+            placeholder="Tulis keluhan di sini..."
+        >
+
+        <button id="send-btn">
+
+            Kirim
+
+        </button>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
+
+</body>
+</html>

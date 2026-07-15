@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+
+<body>
+
+<header>
+
+    <h2>CampusVoice</h2>
+
+    <nav>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </nav>
+
+</header>
+
+<main>
+
+    <h1>Halo, {{ nama }}!</h1>
+
+    <p>
+        Selamat datang di CampusVoice.
+        Pilih menu yang ingin digunakan.
+    </p>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="icon">🤖</div>
+
+            <h3>Chatbot AI</h3>
+
+            <p>
+                Kirim keluhan kepada pihak kampus melalui chatbot.
+            </p>
+
+            <a href="{{ url_for('chatbot') }}">
+                <button>Buka</button>
+            </a>
+
+        </div>
+
+        <div class="card">
+
+            <div class="icon">📋</div>
+
+            <h3>Riwayat Keluhan</h3>
+
+            <p>
+                Lihat semua keluhan yang pernah kamu kirim.
+            </p>
+
+            <a href="{{ url_for('riwayat') }}">
+                <button>Buka</button>
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
+
+</body>
+</html>

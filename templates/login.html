@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | CampusVoice</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <div class="login-box">
+            <h1>CampusVoice</h1>
+            <p>
+                Login menggunakan NIM dan Password
+            </p>
+
+            <form method="POST">
+
+                <input
+                    type="text"
+                    name="identifier"
+                    placeholder="NIM / Username"
+                    required
+                >
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    required
+                >
+                <button type="submit">
+                    Login
+                </button>
+
+            </form>
+
+            <a href="/">
+                ← Kembali ke Beranda
+            </a>
+
+        </div>
+
+    </div>
+
+<script src="{{ url_for('static', filename='js/login.js') }}"></script>
+
+</body>
+</html>

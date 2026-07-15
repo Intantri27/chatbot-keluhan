@@ -4,224 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatbot Keluhan Mahasiswa</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #f0f2f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .chat-container {
-            width: 420px;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        .chat-header {
-            background-color: #6a2d2d;
-            color: white;
-            padding: 16px 20px;
-            text-align: center;
-        }
-
-        .chat-header h2 {
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .chat-header p {
-            font-size: 12px;
-            opacity: 0.8;
-            margin-top: 2px;
-        }
-
-        .chat-body {
-            height: 420px;
-            overflow-y: auto;
-            padding: 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .bubble {
-            max-width: 80%;
-            padding: 10px 14px;
-            border-radius: 12px;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        .bubble.bot {
-            background-color: #f5e8e8;
-            color: #431b1b;
-            align-self: flex-start;
-            border-bottom-left-radius: 2px;
-        }
-
-        .bubble.user {
-            background-color: #6a2d2d;
-            color: white;
-            align-self: flex-end;
-            border-bottom-right-radius: 2px;
-        }
-
-        .bubble.kategori {
-            background-color: #fff3cd;
-            color: #856404;
-            align-self: flex-start;
-            font-size: 12px;
-            padding: 6px 12px;
-            border-radius: 20px;
-        }
-
-        .chat-footer {
-            padding: 12px 16px;
-            border-top: 1px solid #e0e0e0;
-            display: flex;
-            gap: 8px;
-        }
-
-        .chat-footer input {
-            flex: 1;
-            padding: 10px 14px;
-            border: 1px solid #ddd;
-            border-radius: 24px;
-            outline: none;
-            font-size: 14px;
-        }
-
-        .chat-footer input:focus {
-            border-color: #6a2d2d;
-        }
-
-        .chat-footer button {
-            background-color: #6a2d2d;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .chat-footer button:hover {
-            background-color: #431b1b;
-        }
-
-        .typing {
-            font-size: 12px;
-            color: #aaa;
-            align-self: flex-start;
-            padding: 4px 8px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 </head>
 <body>
-    <div class="chat-container">
-        <div class="chat-header">
-            <h2>Chatbot Keluhan Mahasiswa</h2>
-            <p>Universitas Harapan Negeri</p>
-        </div>
 
-        <div class="chat-body" id="chatBody">
-            <div class="bubble bot">
-                Halo! Saya adalah asisten keluhan mahasiswa Universitas Harapan Negeri. Sampaikan keluhanmu dan saya akan meneruskannya ke pihak yang tepat. 😊
-            </div>
-        </div>
+<nav>
 
-        <div class="chat-footer">
-            <input 
-                type="text" 
-                id="inputKeluhan" 
-                placeholder="Tulis keluhanmu di sini..." 
-                onkeypress="handleEnter(event)"
-            />
-            <button onclick="kirimKeluhan()">➤</button>
-        </div>
+    <div class="logo">
+        CampusVoice
     </div>
 
-    <script>
-        function handleEnter(event) {
-            if (event.key === 'Enter') {
-                kirimKeluhan();
-            }
-        }
+    <a href="/login" class="login-btn">
+        Login
+    </a>
 
-        function tambahBubble(teks, tipe) {
-            const chatBody = document.getElementById('chatBody');
-            const bubble = document.createElement('div');
-            bubble.classList.add('bubble', tipe);
-            bubble.textContent = teks;
-            chatBody.appendChild(bubble);
-            chatBody.scrollTop = chatBody.scrollHeight;
-        }
+</nav>
 
-        function tambahKategori(kategori) {
-            const chatBody = document.getElementById('chatBody');
-            const badge = document.createElement('div');
-            badge.classList.add('bubble', 'kategori');
-            badge.textContent = '📂 Kategori: ' + kategori;
-            chatBody.appendChild(badge);
-            chatBody.scrollTop = chatBody.scrollHeight;
-        }
+<section class="hero">
 
-        async function kirimKeluhan() {
-            const input = document.getElementById('inputKeluhan');
-            const teks = input.value.trim();
+    <div class="hero-text">
 
-            if (!teks) return;
+        <h1>
+            Chatbot Layanan Keluhan Mahasiswa
+        </h1>
 
-            // Tampilkan pesan user
-            tambahBubble(teks, 'user');
-            input.value = '';
+        <p>
 
-            // Tampilkan indikator mengetik
-            const chatBody = document.getElementById('chatBody');
-            const typing = document.createElement('div');
-            typing.classList.add('typing');
-            typing.id = 'typing';
-            typing.textContent = 'Bot sedang memproses...';
-            chatBody.appendChild(typing);
+            Sampaikan keluhan mengenai fasilitas,
+            akademik, administrasi, maupun layanan
+            kampus dengan lebih mudah melalui chatbot.
 
-            try {
-                const response = await fetch('/prediksi', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ teks: teks })
-                });
+        </p>
 
-                const data = await response.json();
+        <a href="/login" class="btn">
+            Mulai
+        </a>
 
-                // Hapus indikator mengetik
-                document.getElementById('typing').remove();
+    </div>
 
-                // Tampilkan kategori dan respon
-                tambahKategori(data.kategori);
-                tambahBubble(data.respon, 'bot');
+    <div class="hero-image">
 
-            } catch (error) {
-                document.getElementById('typing').remove();
-                tambahBubble('Maaf, terjadi kesalahan. Silakan coba lagi.', 'bot');
-            }
-        }
-    </script>
+        <img src="{{ url_for('static', filename='css/campusvoice.png') }}" alt="Hero Image">
+
+    </div>
+
+</section>
+
+<section class="fitur">
+
+    <div class="card">
+
+        <h3>Fleksibel</h3>
+
+        <p>
+            Mahasiswa dapat mengirim keluhan
+            kapan saja.
+        </p>
+
+    </div>
+
+    <div class="card">
+
+        <h3>AI</h3>
+
+        <p>
+            Keluhan akan dikategorikan secara
+            otomatis menggunakan NLP.
+        </p>
+
+    </div>
+
+    <div class="card">
+
+        <h3>Mudah</h3>
+
+        <p>
+            Hanya dengan beberapa klik,
+            keluhan akan segera ditangani.
+        </p>
+
+    </div>
+
+</section>
+
+<footer>
+
+    © 2026 CampusVoice
+
+</footer>
+
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+
 </body>
 </html>

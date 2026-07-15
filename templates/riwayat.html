@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Keluhan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/riwayat.css') }}">
+</head>
+<body>
+    <header>
+        <h2>
+            CampusVoice
+        </h2>
+
+        <nav>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Logout</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Riwayat Keluhan</h1>
+        {% if data %}
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Tanggal</th>
+                    <th>Kategori</th>
+                    <th>Status</th>
+                    <th>Isi Keluhan</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ row.tanggal }}</td>
+                    <td>{{ row.kategori }}</td>
+                    <td>
+
+                        {% if row["status"] == "Menunggu" %}
+
+                        <span class="status menunggu">
+                            {{ row["status"] }}
+                        </span>
+
+                        {% elif row["status"] == "Diproses" %}
+
+                        <span class="status diproses">
+                            {{ row["status"] }}
+                        </span>
+
+                        {% elif row["status"] == "Selesai" %}
+
+                        <span class="status selesai">
+                            {{ row["status"] }}
+                        </span>
+
+                        {% else %}
+
+                        {{ row["status"] }}
+
+                        {% endif %}
+
+                    </td>
+                    <td>{{ row.isi_keluhan }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>Tidak ada riwayat keluhan.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

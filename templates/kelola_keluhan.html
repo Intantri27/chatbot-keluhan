@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola keluhan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/riwayat.css') }}">
+</head>
+<body>
+    <header>
+        <h2>
+            CampusVoice
+        </h2>
+
+        <nav>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Logout</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Kelola Keluhan</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>NIM</th>
+                    <th>Kategori</th>
+                    <th>Status</th>
+                    <th>Isi Keluhan</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ row.nim }}</td>
+                    <td>{{ row.kategori }}</td>
+                    <td>
+                        <span class="status
+                        {% if row['status']=='Menunggu' %} menunggu
+                        {% elif row['status']=='Diproses' %} diproses
+                        {% else %} selesai
+                        {% endif %}">
+
+                        {{ row["status"] }}
+
+                        </span>
+
+                        </td>
+
+                    <td>{{ row["isi_keluhan"] }}</td>
+                    <td>
+                        <form
+                            action="{{ url_for('ubah_status', id=row['id']) }}"
+                            method="POST">
+
+                            <select name="status">
+
+                            <option>Menunggu</option>
+                            <option>Diproses</option>
+                            <option>Selesai</option>
+
+                            </select>
+
+                            <button type="submit">Simpan</button>
+                        </form>
+
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
